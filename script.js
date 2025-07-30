@@ -1,21 +1,26 @@
-function checkAnswer() {
-  let correctAnswer = "4";
+ document.addEventListener("DOMContentLoaded", function () {
+  // All your code goes inside here
 
-  const selectedOption = document.querySelector('input[name="quiz"]:checked');
+  function checkAnswer() {
+    const correctAnswer = "4";
+    const selectedOption = document.querySelector('input[name="quiz"]:checked');
 
-  if (!selectedOption) {
-    document.getElementById("feedback").textContent = "Please select an answer.";
-    return;
+    const feedbackElement = document.getElementById("feedback");
+
+    if (!selectedOption) {
+      feedbackElement.textContent = "Please select an answer.";
+      return;
+    }
+
+    const userAnswer = selectedOption.value;
+
+    if (userAnswer === correctAnswer) {
+      feedbackElement.textContent = "Correct! Well done.";
+    } else {
+      feedbackElement.textContent = "That's incorrect. Try again!";
+    }
   }
 
-  const userAnswer = selectedOption.value;
-
-  if (userAnswer === correctAnswer) {
-    document.getElementById("feedback").textContent = "Correct! Well done.";
-  } else {
-    document.getElementById("feedback").textContent = "That's incorrect. Try again!";
-  }
-}
-
-document.getElementById("submit-answer").addEventListener("click", checkAnswer);
-
+  const submitButton = document.getElementById("submit-answer");
+  submitButton.addEventListener("click", checkAnswer);
+});
